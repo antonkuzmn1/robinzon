@@ -16,8 +16,25 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// json
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0-rc1'
+
+	// session
+	// implementation 'org.springframework.session:spring-session-jdbc:3.2.1'
+	// implementation 'org.springframework.session:spring-session-core:3.2.1'
+
+	// mysql
+	implementation 'com.mysql:mysql-connector-j:8.3.0'
+
+	// boot
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.2.3'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.2.3'
+	implementation 'org.springframework.boot:spring-boot-starter-web:3.2.3'
+
+	// test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.3'
+
 }
 
 tasks.named('test') {
