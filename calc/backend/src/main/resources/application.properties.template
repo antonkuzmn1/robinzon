@@ -12,3 +12,8 @@ spring.jpa.show-sql=true
 # session
 spring.session.jdbc.initialize-schema=always
 # server.servlet.session.timeout=
+
+# ssh
+fmadmin.login=etwaLogin
+fmadmin.password=etwaPass1488
+fmadmin.command=powershell.exe "C:\\Distrib\\calc\\calc_v23.12.17.ps1"
