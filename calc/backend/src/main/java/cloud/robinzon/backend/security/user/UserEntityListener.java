@@ -1,29 +1,26 @@
-// package cloud.robinzon.backend.security.user;
+package cloud.robinzon.backend.security.user;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// import jakarta.persistence.PrePersist;
-// import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-// @Component
-// public class UserEntityListener {
+@Component
+public class UserEntityListener {
 
-//     private UserEntityRepository userEntityRepository;
-//     private UserHistoryRepository userHistoryRepository;
+    @Autowired
+    private UserEntityRepository userEntityRepository;
+    
+    @Autowired
+    private UserHistoryRepository userHistoryRepository;
 
-//     public UserEntityListener(
-//             UserEntityRepository userEntityRepository,
-//             UserHistoryRepository userHistoryRepository) {
-//         this.userEntityRepository = userEntityRepository;
-//         this.userHistoryRepository = userHistoryRepository;
-//     }
+    @PrePersist
+    public void prePersist(UserEntity userEntity) {
+    }
 
-//     @PrePersist
-//     public void prePersist(UserEntity userEntity) {
-//     }
+    @PreUpdate
+    public void preUpdate(UserEntity userEntity) {
+    }
 
-//     @PreUpdate
-//     public void preUpdate(UserEntity userEntity) {
-//     }
-
-// }
+}

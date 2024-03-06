@@ -1,29 +1,26 @@
-// package cloud.robinzon.backend.settings.vpn.type;
+package cloud.robinzon.backend.settings.vpn.type;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// import jakarta.persistence.PrePersist;
-// import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-// @Component
-// public class VpnTypeListener {
+@Component
+public class VpnTypeListener {
 
-//     private VpnTypeEntityRepository vpnTypeEntityRepository;
-//     private VpnTypeHistoryRepository vpnTypeHistoryRepository;
+    @Autowired
+    private VpnTypeEntityRepository vpnTypeEntityRepository;
 
-//     public VpnTypeListener(
-//             VpnTypeEntityRepository vpnTypeEntityRepository,
-//             VpnTypeHistoryRepository vpnTypeHistoryRepository) {
-//         this.vpnTypeEntityRepository = vpnTypeEntityRepository;
-//         this.vpnTypeHistoryRepository = vpnTypeHistoryRepository;
-//     }
+    @Autowired
+    private VpnTypeHistoryRepository vpnTypeHistoryRepository;
 
-//     @PrePersist
-//     public void prePersist(VpnTypeEntity vpnTypeEntity) {
-//     }
+    @PrePersist
+    public void prePersist(VpnTypeEntity vpnTypeEntity) {
+    }
 
-//     @PreUpdate
-//     public void preUpdate(VpnTypeEntity vpnTypeEntity) {
-//     }
+    @PreUpdate
+    public void preUpdate(VpnTypeEntity vpnTypeEntity) {
+    }
 
-// }
+}

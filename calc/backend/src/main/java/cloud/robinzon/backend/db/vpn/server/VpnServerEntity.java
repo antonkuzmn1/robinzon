@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import cloud.robinzon.backend.db.net.NetEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "vpn_server_entity")
-// @EntityListeners(VpnServerEntityListener.class)
+@EntityListeners(VpnServerEntityListener.class)
 public class VpnServerEntity {
 
     @Id

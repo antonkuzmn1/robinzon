@@ -1,29 +1,26 @@
-// package cloud.robinzon.backend.settings.vm.price;
+package cloud.robinzon.backend.settings.vm.price;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// import jakarta.persistence.PrePersist;
-// import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-// @Component
-// public class VmPriceListener {
+@Component
+public class VmPriceListener {
 
-//     private VmPriceEntityRepository vmPriceEntityRepository;
-//     private VmPriceHistoryRepository vmPriceHistoryRepository;
+    @Autowired
+    private VmPriceEntityRepository vmPriceEntityRepository;
 
-//     public VmPriceListener(
-//             VmPriceEntityRepository vmPriceEntityRepository,
-//             VmPriceHistoryRepository vmPriceHistoryRepository) {
-//         this.vmPriceEntityRepository = vmPriceEntityRepository;
-//         this.vmPriceHistoryRepository = vmPriceHistoryRepository;
-//     }
+    @Autowired
+    private VmPriceHistoryRepository vmPriceHistoryRepository;
 
-//     @PrePersist
-//     public void prePersist(VmPriceEntity vmPriceEntity) {
-//     }
+    @PrePersist
+    public void prePersist(VmPriceEntity vmPriceEntity) {
+    }
 
-//     @PreUpdate
-//     public void preUpdate(VmPriceEntity vmPriceEntity) {
-//     }
+    @PreUpdate
+    public void preUpdate(VmPriceEntity vmPriceEntity) {
+    }
 
-// }
+}

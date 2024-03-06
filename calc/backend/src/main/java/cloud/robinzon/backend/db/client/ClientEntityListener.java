@@ -1,29 +1,26 @@
-// package cloud.robinzon.backend.db.client;
+package cloud.robinzon.backend.db.client;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// import jakarta.persistence.PrePersist;
-// import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-// @Component
-// public class ClientEntityListener {
+@Component
+public class ClientEntityListener {
 
-//     private ClientEntityRepository clientEntityRepository;
-//     private ClientHistoryRepository clientHistoryRepository;
+    @Autowired
+    private ClientEntityRepository clientEntityRepository;
 
-//     public ClientEntityListener(
-//             ClientEntityRepository clientEntityRepository,
-//             ClientHistoryRepository clientHistoryRepository) {
-//         this.clientEntityRepository = clientEntityRepository;
-//         this.clientHistoryRepository = clientHistoryRepository;
-//     }
+    @Autowired
+    private ClientHistoryRepository clientHistoryRepository;
 
-//     @PrePersist
-//     public void prePersist(ClientEntity clientEntity) {
-//     }
+    @PrePersist
+    public void prePersist(ClientEntity clientEntity) {
+    }
 
-//     @PreUpdate
-//     public void preUpdate(ClientEntity clientEntity) {
-//     }
+    @PreUpdate
+    public void preUpdate(ClientEntity clientEntity) {
+    }
 
-// }
+}

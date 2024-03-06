@@ -1,29 +1,26 @@
-// package cloud.robinzon.backend.security.group;
+package cloud.robinzon.backend.security.group;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// import jakarta.persistence.PrePersist;
-// import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-// @Component
-// public class GroupEntityListener {
+@Component
+public class GroupEntityListener {
 
-//     private GroupEntityRepository groupEntityRepository;
-//     private GroupHistoryRepository groupHistoryRepository;
+    @Autowired
+    private GroupEntityRepository groupEntityRepository;
 
-//     public GroupEntityListener(
-//             GroupEntityRepository groupEntityRepository,
-//             GroupHistoryRepository groupHistoryRepository) {
-//         this.groupEntityRepository = groupEntityRepository;
-//         this.groupHistoryRepository = groupHistoryRepository;
-//     }
+    @Autowired
+    private GroupHistoryRepository groupHistoryRepository;
 
-//     @PrePersist
-//     public void prePersist(GroupEntity groupEntity) {
-//     }
+    @PrePersist
+    public void prePersist(GroupEntity groupEntity) {
+    }
 
-//     @PreUpdate
-//     public void preUpdate(GroupEntity groupEntity) {
-//     }
+    @PreUpdate
+    public void preUpdate(GroupEntity groupEntity) {
+    }
 
-// }
+}

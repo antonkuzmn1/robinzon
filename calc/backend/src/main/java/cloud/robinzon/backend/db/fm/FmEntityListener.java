@@ -1,32 +1,29 @@
-// package cloud.robinzon.backend.db.fm;
+package cloud.robinzon.backend.db.fm;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// import jakarta.persistence.PrePersist;
-// import jakarta.persistence.PreUpdate;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-// @Component
-// public class FmEntityListener {
+@Component
+public class FmEntityListener {
 
-//     private FmEntityRepository fmEntityRepository;
-//     private FmHistoryRepository fmHistoryRepository;
-//     private FmRentRepository fmRentRepository;
+    @Autowired
+    private FmEntityRepository fmEntityRepository;
 
-//     public FmEntityListener(
-//             FmEntityRepository fmEntityRepository,
-//             FmHistoryRepository fmHistoryRepository,
-//             FmRentRepository fmRentRepository) {
-//         this.fmEntityRepository = fmEntityRepository;
-//         this.fmHistoryRepository = fmHistoryRepository;
-//         this.fmRentRepository = fmRentRepository;
-//     }
+    @Autowired
+    private FmHistoryRepository fmHistoryRepository;
 
-//     @PrePersist
-//     public void prePersist(FmEntity fmEntity) {
-//     }
+    @Autowired
+    private FmRentRepository fmRentRepository;
 
-//     @PreUpdate
-//     public void preUpdate(FmEntity fmEntity) {
-//     }
+    @PrePersist
+    public void prePersist(FmEntity fmEntity) {
+    }
 
-// }
+    @PreUpdate
+    public void preUpdate(FmEntity fmEntity) {
+    }
+
+}

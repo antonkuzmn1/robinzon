@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "settings_vm_price_entity")
-// @EntityListeners(VmPriceListener.class)
+@EntityListeners(VmPriceListener.class)
 public class VmPriceEntity {
 
     @Id
