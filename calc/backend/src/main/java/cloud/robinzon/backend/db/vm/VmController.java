@@ -1,7 +1,6 @@
 package cloud.robinzon.backend.db.vm;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,20 +12,16 @@ import com.jcraft.jsch.JSchException;
 @RequestMapping("db/vm/")
 public class VmController {
 
-    private VmService service;
+    private VmService vmService;
 
     public VmController(
-            VmService service) {
-        this.service = service;
-    }
-
-    @GetMapping
-    public List<VmEntity> getAll() {
-        return service.getAll();
+            VmService vmService) {
+        this.vmService = vmService;
     }
 
     @GetMapping("update")
-    public Boolean updateAll() throws JSchException, IOException {
-        return service.updateAll();
+    public boolean updateAll() throws JSchException, IOException {
+        return vmService.updateAll();
     }
+
 }

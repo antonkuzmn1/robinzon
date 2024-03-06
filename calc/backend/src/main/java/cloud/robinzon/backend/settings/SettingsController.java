@@ -1,17 +1,17 @@
-// package cloud.robinzon.backend.settings;
+package cloud.robinzon.backend.settings;
 
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-// @RestController
-// @RequestMapping("settings/")
-// public class SettingsController {
+@RestController
+@RequestMapping("settings/")
+public class SettingsController {
 
-//     private SettingsService settingsService;
+    private SettingsService settingsService;
 
-//     public SettingsController(
-//             SettingsService settingsService) {
-//         this.settingsService = settingsService;
-//     }
+    public SettingsController(
+            SettingsService settingsService) {
+        this.settingsService = settingsService;
+    }
 
-// }
+}

@@ -8,31 +8,15 @@ import org.springframework.stereotype.Service;
 public class FmService {
 
     private FmEntityRepository fmRepository;
-    private FmHistoryRepository fmHistoryRepository;
-    private FmRentRepository fmRentRepository;
 
     public FmService(
-            FmEntityRepository fmRepository,
-            FmHistoryRepository fmHistoryRepository,
-            FmRentRepository fmRentRepository) {
+            FmEntityRepository fmRepository) {
         this.fmRepository = fmRepository;
-        this.fmHistoryRepository = fmHistoryRepository;
-        this.fmRentRepository = fmRentRepository;
     }
 
     public List<FmEntity> getAll() {
         System.out.println("[FmService][getAll]");
         return fmRepository.findAll();
-    }
-
-    public List<FmHistory> getHistoryAll() {
-        System.out.println("[FmService][getHistoryAll]");
-        return fmHistoryRepository.findAll();
-    }
-
-    public List<FmRent> getRentAll() {
-        System.out.println("[FmService][getRentAll]");
-        return fmRentRepository.findAll();
     }
 
     public List<FmEntity> getByVm(Boolean vm) {

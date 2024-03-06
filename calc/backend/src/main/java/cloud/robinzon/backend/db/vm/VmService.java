@@ -18,20 +18,14 @@ import cloud.robinzon.backend.db.fm.FmSshService;
 public class VmService {
 
     private VmEntityRepository vmRepository;
-    private VmHistoryRepository vmHistoryRepository;
-    private VmRentRepository vmRentRepository;
     private FmService fmService;
     private FmSshService fmSshService;
 
     public VmService(
             VmEntityRepository vmRepository,
-            VmHistoryRepository vmHistoryRepository,
-            VmRentRepository vmRentRepository,
             FmService fmService,
             FmSshService fmSshService) {
         this.vmRepository = vmRepository;
-        this.vmHistoryRepository = vmHistoryRepository;
-        this.vmRentRepository = vmRentRepository;
         this.fmService = fmService;
         this.fmSshService = fmSshService;
     }
@@ -43,17 +37,7 @@ public class VmService {
         return vmRepository.findAll();
     }
 
-    public List<VmRent> getRentAll() {
-        System.out.println("[VmService][getRentAll]");
-        return vmRentRepository.findAll();
-    }
-
-    public List<VmHistory> getHistoryAll() {
-        System.out.println("[VmService][getHistoryAll]");
-        return vmHistoryRepository.findAll();
-    }
-
-    public Boolean updateAll() throws JSchException, IOException {
+    public boolean updateAll() throws JSchException, IOException {
         System.out.println("[VmService][updateAll]");
         List<FmEntity> fmList = fmService.getByVm(true);
         List<VmEntity> vmList = new ArrayList<>();
