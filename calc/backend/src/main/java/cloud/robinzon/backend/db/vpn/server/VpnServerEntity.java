@@ -1,10 +1,15 @@
 package cloud.robinzon.backend.db.vpn.server;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import cloud.robinzon.backend.db.net.NetEntity;
+import cloud.robinzon.backend.settings.vpn.type.VpnTypeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -12,6 +17,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -40,9 +47,10 @@ public class VpnServerEntity {
     @JoinColumn(nullable = false)
     private NetEntity netEntity;
 
-    // @ManyToMany
-    // @JoinTable(name = "vpn_server_m2m_vpn_type")
-    // private Set<VpnTypeEntity> vpnTypeEntity = new HashSet<>();
+    @ManyToMany
+    @JsonIgnoreProperties("vpnServerEntity")
+    @JoinTable(name = "vpn_server_m2m_vpn_type")
+    private Set<VpnTypeEntity> vpnTypeEntity = new HashSet<>();
 
     @UpdateTimestamp
     private Timestamp timestamp;
@@ -57,7 +65,7 @@ public class VpnServerEntity {
             String ip,
             String publicKey,
             NetEntity netEntity,
-            // Set<VpnTypeEntity> vpnTypeEntity,
+            Set<VpnTypeEntity> vpnTypeEntity,
             boolean deleted) {
         this.id = id;
         this.title = title;
@@ -65,7 +73,7 @@ public class VpnServerEntity {
         this.ip = ip;
         this.publicKey = publicKey;
         this.netEntity = netEntity;
-        // this.vpnTypeEntity = vpnTypeEntity;
+        this.vpnTypeEntity = vpnTypeEntity;
         this.deleted = deleted;
     }
 
@@ -74,14 +82,14 @@ public class VpnServerEntity {
             String description,
             String ip,
             String publicKey,
-            NetEntity netEntity){
-            // Set<VpnTypeEntity> vpnTypeEntity) {
+            NetEntity netEntity,
+            Set<VpnTypeEntity> vpnTypeEntity) {
         this.title = title;
         this.description = description;
         this.ip = ip;
         this.publicKey = publicKey;
         this.netEntity = netEntity;
-        // this.vpnTypeEntity = vpnTypeEntity;
+        this.vpnTypeEntity = vpnTypeEntity;
     }
 
     public Long getId() {
@@ -132,13 +140,13 @@ public class VpnServerEntity {
         this.netEntity = netEntity;
     }
 
-    // public Set<VpnTypeEntity> getVpnTypeEntity() {
-        // return vpnTypeEntity;
-    // }
+    public Set<VpnTypeEntity> getVpnTypeEntity() {
+        return vpnTypeEntity;
+    }
 
-    // public void setVpnTypeEntity(Set<VpnTypeEntity> vpnTypeEntity) {
-        // this.vpnTypeEntity = vpnTypeEntity;
-    // }
+    public void setVpnTypeEntity(Set<VpnTypeEntity> vpnTypeEntity) {
+        this.vpnTypeEntity = vpnTypeEntity;
+    }
 
     public Timestamp getTimestamp() {
         return timestamp;
@@ -164,7 +172,7 @@ public class VpnServerEntity {
                 + ", ip=" + ip
                 + ", publicKey=" + publicKey
                 + ", netEntity=" + netEntity
-                // + ", vpnTypeEntity=" + vpnTypeEntity
+                + ", vpnTypeEntity=" + vpnTypeEntity
                 + ", timestamp=" + timestamp
                 + ", deleted=" + deleted
                 + "]";
@@ -180,7 +188,7 @@ public class VpnServerEntity {
         result = prime * result + ((ip == null) ? 0 : ip.hashCode());
         result = prime * result + ((publicKey == null) ? 0 : publicKey.hashCode());
         result = prime * result + ((netEntity == null) ? 0 : netEntity.hashCode());
-        // result = prime * result + ((vpnTypeEntity == null) ? 0 : vpnTypeEntity.hashCode());
+        result = prime * result + ((vpnTypeEntity == null) ? 0 : vpnTypeEntity.hashCode());
         result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
         result = prime * result + (deleted ? 1231 : 1237);
         return result;
@@ -225,11 +233,11 @@ public class VpnServerEntity {
                 return false;
         } else if (!netEntity.equals(other.netEntity))
             return false;
-        // if (vpnTypeEntity == null) {
-        //     if (other.vpnTypeEntity != null)
-        //         return false;
-        // } else if (!vpnTypeEntity.equals(other.vpnTypeEntity))
-            // return false;
+        if (vpnTypeEntity == null) {
+            if (other.vpnTypeEntity != null)
+                return false;
+        } else if (!vpnTypeEntity.equals(other.vpnTypeEntity))
+            return false;
         if (timestamp == null) {
             if (other.timestamp != null)
                 return false;

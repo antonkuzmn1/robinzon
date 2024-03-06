@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import cloud.robinzon.backend.db.vpn.server.VpnServerEntity;
 import cloud.robinzon.backend.security.user.UserEntity;
+import cloud.robinzon.backend.settings.vpn.type.VpnTypeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -29,12 +30,12 @@ public class VpnUserHistory {
     private Timestamp timestamp;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(nullable = false)
     private VpnServerEntity vpnServerEntity;
 
-    // @ManyToOne
-    // @JoinColumn
-    // private VpnTypeEntity vpnTypeEntity;
+    @ManyToOne
+    @JoinColumn
+    private VpnTypeEntity vpnTypeEntity;
 
     @Column(nullable = false, length = 15)
     private String ip;
@@ -61,7 +62,7 @@ public class VpnUserHistory {
     public VpnUserHistory(
             VpnUserEntity vpnUserEntity,
             VpnServerEntity vpnServerEntity,
-            // VpnTypeEntity vpnTypeEntity,
+            VpnTypeEntity vpnTypeEntity,
             String ip,
             String username,
             String password,
@@ -71,7 +72,7 @@ public class VpnUserHistory {
             UserEntity changeBy) {
         this.vpnUserEntity = vpnUserEntity;
         this.vpnServerEntity = vpnServerEntity;
-        // this.vpnTypeEntity = vpnTypeEntity;
+        this.vpnTypeEntity = vpnTypeEntity;
         this.ip = ip;
         this.username = username;
         this.password = password;
@@ -105,13 +106,13 @@ public class VpnUserHistory {
         this.vpnServerEntity = vpnServerEntity;
     }
 
-    // public VpnTypeEntity getVpnTypeEntity() {
-    //     return vpnTypeEntity;
-    // }
+    public VpnTypeEntity getVpnTypeEntity() {
+        return vpnTypeEntity;
+    }
 
-    // public void setVpnTypeEntity(VpnTypeEntity vpnTypeEntity) {
-    //     this.vpnTypeEntity = vpnTypeEntity;
-    // }
+    public void setVpnTypeEntity(VpnTypeEntity vpnTypeEntity) {
+        this.vpnTypeEntity = vpnTypeEntity;
+    }
 
     public String getIp() {
         return ip;
@@ -174,7 +175,7 @@ public class VpnUserHistory {
         return "VpnUserHistory [vpnUserEntity=" + vpnUserEntity
                 + ", timestamp=" + timestamp
                 + ", vpnServerEntity=" + vpnServerEntity
-                // + ", vpnTypeEntity=" + vpnTypeEntity
+                + ", vpnTypeEntity=" + vpnTypeEntity
                 + ", ip=" + ip
                 + ", username=" + username
                 + ", password=" + password
@@ -192,7 +193,7 @@ public class VpnUserHistory {
         result = prime * result + ((vpnUserEntity == null) ? 0 : vpnUserEntity.hashCode());
         result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
         result = prime * result + ((vpnServerEntity == null) ? 0 : vpnServerEntity.hashCode());
-        // result = prime * result + ((vpnTypeEntity == null) ? 0 : vpnTypeEntity.hashCode());
+        result = prime * result + ((vpnTypeEntity == null) ? 0 : vpnTypeEntity.hashCode());
         result = prime * result + ((ip == null) ? 0 : ip.hashCode());
         result = prime * result + ((username == null) ? 0 : username.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -227,11 +228,11 @@ public class VpnUserHistory {
                 return false;
         } else if (!vpnServerEntity.equals(other.vpnServerEntity))
             return false;
-        // if (vpnTypeEntity == null) {
-        //     if (other.vpnTypeEntity != null)
-        //         return false;
-        // } else if (!vpnTypeEntity.equals(other.vpnTypeEntity))
-        //     return false;
+        if (vpnTypeEntity == null) {
+            if (other.vpnTypeEntity != null)
+                return false;
+        } else if (!vpnTypeEntity.equals(other.vpnTypeEntity))
+            return false;
         if (ip == null) {
             if (other.ip != null)
                 return false;

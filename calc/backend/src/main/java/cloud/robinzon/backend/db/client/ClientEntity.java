@@ -47,6 +47,9 @@ public class ClientEntity {
     private String description;
 
     @Column(nullable = false)
+    private int balance;
+
+    @Column(nullable = false)
     private boolean deleted;
 
     public ClientEntity(
@@ -58,6 +61,7 @@ public class ClientEntity {
             Date contractDate,
             String title,
             String description,
+            int balance,
             boolean deleted) {
         this.id = id;
         this.name = name;
@@ -67,6 +71,7 @@ public class ClientEntity {
         this.contractDate = contractDate;
         this.title = title;
         this.description = description;
+        this.balance = balance;
         this.deleted = deleted;
     }
 
@@ -77,6 +82,7 @@ public class ClientEntity {
             Double contractNumber,
             Date contractDate,
             String title,
+            int balance,
             String description) {
         this.name = name;
         this.inn = inn;
@@ -85,6 +91,7 @@ public class ClientEntity {
         this.contractDate = contractDate;
         this.title = title;
         this.description = description;
+        this.balance = balance;
     }
 
     public Long getId() {
@@ -166,6 +173,14 @@ public class ClientEntity {
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
+    
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 
     @Override
     public String toString() {
@@ -178,6 +193,7 @@ public class ClientEntity {
                 + ", contractDate=" + contractDate
                 + ", title=" + title
                 + ", description=" + description
+                + ", balance=" + balance
                 + ", deleted=" + deleted
                 + "]";
     }
@@ -195,6 +211,7 @@ public class ClientEntity {
         result = prime * result + ((contractDate == null) ? 0 : contractDate.hashCode());
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + balance;
         result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
@@ -249,6 +266,8 @@ public class ClientEntity {
             if (other.description != null)
                 return false;
         } else if (!description.equals(other.description))
+            return false;
+        if (balance != other.balance)
             return false;
         if (deleted != other.deleted)
             return false;
