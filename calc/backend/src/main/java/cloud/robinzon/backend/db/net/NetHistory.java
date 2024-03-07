@@ -58,6 +58,9 @@ public class NetHistory {
     @Column(nullable = false, length = 255)
     private String description;
 
+    @Column(nullable = false)
+    private boolean deleted;
+
     public NetHistory(
             NetEntity netEntity,
             UserEntity changeBy,
@@ -69,7 +72,8 @@ public class NetHistory {
             String dns3,
             boolean cloud,
             String title,
-            String description) {
+            String description,
+            boolean deleted) {
         this.netEntity = netEntity;
         this.changeBy = changeBy;
         this.domain = domain;
@@ -81,6 +85,7 @@ public class NetHistory {
         this.cloud = cloud;
         this.title = title;
         this.description = description;
+        this.deleted = deleted;
     }
 
     public NetEntity getNetEntity() {
@@ -193,7 +198,16 @@ public class NetHistory {
                 + ", cloud=" + cloud
                 + ", title=" + title
                 + ", description=" + description
+                + ", deleted=" + deleted
                 + "]";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -212,6 +226,7 @@ public class NetHistory {
         result = prime * result + (cloud ? 1231 : 1237);
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
 
@@ -280,6 +295,8 @@ public class NetHistory {
             if (other.description != null)
                 return false;
         } else if (!description.equals(other.description))
+            return false;
+        if (deleted != other.deleted)
             return false;
         return true;
     }

@@ -46,6 +46,8 @@ public class FmEntityManager {
             ip = "";
         if (ip.length() > 15)
             return responseForm.error("IP cannot contain more than 15 characters");
+        if (entityRepository.checkUniqueIp(ip))
+            return responseForm.error("FM with IP " + ip + " already exists");
         if (title == null)
             title = "";
         if (title.length() > 50)
@@ -83,7 +85,8 @@ public class FmEntityManager {
                 description,
                 price,
                 vm,
-                null); // spring security system required
+                null, // spring security system required
+                false);
         historyRepository.save(history);
 
         FmRent rent = new FmRent(
@@ -114,6 +117,8 @@ public class FmEntityManager {
             ip = "";
         if (ip.length() > 15)
             return responseForm.error("IP cannot contain more than 15 characters");
+        if (entityRepository.checkUniqueIp(ip))
+            return responseForm.error("FM with IP " + ip + " already exists");
         if (title == null)
             title = "";
         if (title.length() > 50)
@@ -160,10 +165,11 @@ public class FmEntityManager {
                 description,
                 price,
                 vm,
-                null); // spring security system required
+                null, // spring security system required
+                false);
         historyRepository.save(history);
 
-        return responseForm.success("Update FM: " + entity.getName());
+        return responseForm.success("Updated FM: " + entity.getName());
     }
 
     public ResponseForm delete(Long id) {
@@ -191,7 +197,8 @@ public class FmEntityManager {
                 entity.getDescription(),
                 entity.getPrice(),
                 entity.getVm(),
-                null); // spring security system required
+                null, // spring security system required
+                true);
         historyRepository.save(history);
 
         return responseForm.success("Deleted client: " + entity.getName());

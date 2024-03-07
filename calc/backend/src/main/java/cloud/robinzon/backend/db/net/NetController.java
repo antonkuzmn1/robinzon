@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("db/net/")
 public class NetController {
 
-    private NetService netService;
+    // private NetService netService;
 
-    public NetController(
-            NetService netService) {
-        this.netService = netService;
-    }
+    // public NetController(
+    //         NetService netService) {
+    //     this.netService = netService;
+    // }
 
 }

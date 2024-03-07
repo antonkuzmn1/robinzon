@@ -3,8 +3,10 @@ package cloud.robinzon.backend.db.client;
 import org.springframework.stereotype.Component;
 
 import jakarta.persistence.PostPersist;
+import jakarta.persistence.PostRemove;
 import jakarta.persistence.PostUpdate;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreRemove;
 import jakarta.persistence.PreUpdate;
 
 @Component
@@ -17,19 +19,27 @@ public class ClientEntityListener {
     // private ClientHistoryRepository clientHistoryRepository;
 
     @PrePersist
-    public void prePersist(ClientEntity clientEntity) {
+    public void prePersist(ClientEntity entity) {
     }
 
     @PostPersist
-    public void postPersist(ClientEntity clientEntity) {
+    public void postPersist(ClientEntity entity) {
     }
 
     @PreUpdate
-    public void preUpdate(ClientEntity clientEntity) {
+    public void preUpdate(ClientEntity entity) {
     }
 
     @PostUpdate
-    public void postUpdate(ClientEntity clientEntity) {
+    public void postUpdate(ClientEntity entity) {
+    }
+
+    @PreRemove
+    public void preRemove(ClientEntity entity) {
+    }
+
+    @PostRemove
+    public void postRemove(ClientEntity entity) {
     }
 
 }

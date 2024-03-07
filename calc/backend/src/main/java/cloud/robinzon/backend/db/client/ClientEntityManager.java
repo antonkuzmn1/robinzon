@@ -82,7 +82,8 @@ public class ClientEntityManager {
                 contractDate,
                 title,
                 description,
-                null); // spring security system required
+                null, // spring security system required
+                false);
         historyRepository.save(history);
 
         ClientPayment payment = new ClientPayment(
@@ -162,7 +163,8 @@ public class ClientEntityManager {
                 contractDate,
                 title,
                 description,
-                null); // spring security system required
+                null, // spring security system required
+                false);
         historyRepository.save(history);
 
         return responseForm.success("Updated client: " + entity.getName());
@@ -193,7 +195,8 @@ public class ClientEntityManager {
                 entity.getContractDate(),
                 entity.getTitle(),
                 entity.getDescription(),
-                null); // spring security system required
+                null, // spring security system required
+                true);
         historyRepository.save(history);
 
         return responseForm.success("Deleted client: " + entity.getName());

@@ -52,6 +52,9 @@ public class FmHistory {
     @JoinColumn(nullable = false)
     private UserEntity changeBy;
 
+    @Column(nullable = false)
+    private boolean deleted;
+
     public FmHistory(
             FmEntity fmEntity,
             String name,
@@ -61,7 +64,8 @@ public class FmHistory {
             String description,
             int price,
             boolean vm,
-            UserEntity changeBy) {
+            UserEntity changeBy,
+            boolean deleted) {
         this.fmEntity = fmEntity;
         this.name = name;
         this.ip = ip;
@@ -71,6 +75,7 @@ public class FmHistory {
         this.price = price;
         this.vm = vm;
         this.changeBy = changeBy;
+        this.deleted = deleted;
     }
 
     public FmEntity getFmEntity() {
@@ -165,7 +170,16 @@ public class FmHistory {
                 + ", price=" + price
                 + ", vm=" + vm
                 + ", changeBy=" + changeBy
+                + ", deleted=" + deleted
                 + "]";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -182,6 +196,7 @@ public class FmHistory {
         result = prime * result + price;
         result = prime * result + (vm ? 1231 : 1237);
         result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
+        result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
 
@@ -237,6 +252,8 @@ public class FmHistory {
             if (other.changeBy != null)
                 return false;
         } else if (!changeBy.equals(other.changeBy))
+            return false;
+        if (deleted != other.deleted)
             return false;
         return true;
     }

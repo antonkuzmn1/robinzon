@@ -53,6 +53,9 @@ public class ClientHistory {
     @JoinColumn(nullable = false)
     private UserEntity changeBy;
 
+    @Column(nullable = false)
+    private boolean deleted;
+
     public ClientHistory(
             ClientEntity clientEntity,
             String name,
@@ -62,7 +65,8 @@ public class ClientHistory {
             Date contractDate,
             String title,
             String description,
-            UserEntity changeBy) {
+            UserEntity changeBy,
+            boolean deleted) {
         this.clientEntity = clientEntity;
         this.name = name;
         this.inn = inn;
@@ -72,6 +76,7 @@ public class ClientHistory {
         this.title = title;
         this.description = description;
         this.changeBy = changeBy;
+        this.deleted = deleted;
     }
 
     public ClientEntity getClientEntity() {
@@ -166,7 +171,16 @@ public class ClientHistory {
                 + ", title=" + title
                 + ", description=" + description
                 + ", changeBy=" + changeBy
+                + ", deleted=" + deleted
                 + "]";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -183,6 +197,7 @@ public class ClientHistory {
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
+        result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
 
@@ -241,6 +256,8 @@ public class ClientHistory {
             if (other.changeBy != null)
                 return false;
         } else if (!changeBy.equals(other.changeBy))
+            return false;
+        if (deleted != other.deleted)
             return false;
         return true;
     }
