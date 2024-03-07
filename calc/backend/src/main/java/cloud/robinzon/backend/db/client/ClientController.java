@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("db/client/")
 public class ClientController {
 
-    private ClientService clientService;
+    // private ClientService clientService;
 
-    public ClientController(
-            ClientService clientService) {
-        this.clientService = clientService;
-    }
+    // public ClientController(
+    //         ClientService clientService) {
+    //     this.clientService = clientService;
+    // }
 
 }
