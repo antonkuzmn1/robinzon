@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import cloud.robinzon.backend.security.user.UserEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -29,11 +30,17 @@ public class ClientPayment {
     @Column(nullable = false)
     private int balance;
 
+    @ManyToOne
+    @JoinColumn
+    private UserEntity changeBy;
+
     public ClientPayment(
             ClientEntity clientEntity,
-            int balance) {
+            int balance,
+            UserEntity changeBy) {
         this.clientEntity = clientEntity;
         this.balance = balance;
+        this.changeBy = changeBy;
     }
 
     public ClientEntity getClientEntity() {
@@ -65,7 +72,16 @@ public class ClientPayment {
         return "ClientPayment [clientEntity=" + clientEntity
                 + ", timestamp=" + timestamp
                 + ", balance=" + balance
+                + ", changeBy=" + changeBy
                 + "]";
+    }
+
+    public UserEntity getChangeBy() {
+        return changeBy;
+    }
+
+    public void setChangeBy(UserEntity changeBy) {
+        this.changeBy = changeBy;
     }
 
     @Override
@@ -75,6 +91,7 @@ public class ClientPayment {
         result = prime * result + ((clientEntity == null) ? 0 : clientEntity.hashCode());
         result = prime * result + ((timestamp == null) ? 0 : timestamp.hashCode());
         result = prime * result + balance;
+        result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
         return result;
     }
 
@@ -98,6 +115,11 @@ public class ClientPayment {
         } else if (!timestamp.equals(other.timestamp))
             return false;
         if (balance != other.balance)
+            return false;
+        if (changeBy == null) {
+            if (other.changeBy != null)
+                return false;
+        } else if (!changeBy.equals(other.changeBy))
             return false;
         return true;
     }

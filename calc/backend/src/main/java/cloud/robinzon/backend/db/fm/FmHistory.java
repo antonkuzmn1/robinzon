@@ -43,10 +43,10 @@ public class FmHistory {
     private String description;
 
     @Column(nullable = false)
-    private Integer price;
+    private int price;
 
     @Column(nullable = false)
-    private Boolean vm;
+    private boolean vm;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -59,8 +59,8 @@ public class FmHistory {
             String title,
             String specifications,
             String description,
-            Integer price,
-            Boolean vm,
+            int price,
+            boolean vm,
             UserEntity changeBy) {
         this.fmEntity = fmEntity;
         this.name = name;
@@ -129,19 +129,19 @@ public class FmHistory {
         this.description = description;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public Boolean getVm() {
+    public boolean getVm() {
         return vm;
     }
 
-    public void setVm(Boolean vm) {
+    public void setVm(boolean vm) {
         this.vm = vm;
     }
 
@@ -179,8 +179,8 @@ public class FmHistory {
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((specifications == null) ? 0 : specifications.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((price == null) ? 0 : price.hashCode());
-        result = prime * result + ((vm == null) ? 0 : vm.hashCode());
+        result = prime * result + price;
+        result = prime * result + (vm ? 1231 : 1237);
         result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
         return result;
     }
@@ -229,15 +229,9 @@ public class FmHistory {
                 return false;
         } else if (!description.equals(other.description))
             return false;
-        if (price == null) {
-            if (other.price != null)
-                return false;
-        } else if (!price.equals(other.price))
+        if (price != other.price)
             return false;
-        if (vm == null) {
-            if (other.vm != null)
-                return false;
-        } else if (!vm.equals(other.vm))
+        if (vm != other.vm)
             return false;
         if (changeBy == null) {
             if (other.changeBy != null)

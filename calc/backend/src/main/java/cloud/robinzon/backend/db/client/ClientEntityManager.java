@@ -40,7 +40,7 @@ public class ClientEntityManager {
         if (name.length() > 100)
             return responseForm.error("Name cannot contain more than 100 characters");
         if (entityRepository.checkUniqueInn(inn))
-            return responseForm.error("Entity with inn " + inn + " already exists");
+            return responseForm.error("Entity with INN " + inn + " already exists");
         if (name.length() > 12)
             return responseForm.error("Name cannot contain more than 100 characters");
         if (discount < 0)
@@ -87,7 +87,8 @@ public class ClientEntityManager {
 
         ClientPayment payment = new ClientPayment(
                 entity,
-                balance);
+                balance,
+                null); // spring security system required
         paymentRepository.save(payment);
 
         return responseForm.success("Inserted new client: " + entity.getName());
@@ -109,7 +110,7 @@ public class ClientEntityManager {
         if (name.length() > 100)
             return responseForm.error("Name cannot contain more than 100 characters");
         if (entityRepository.checkUniqueInn(inn))
-            return responseForm.error("Entity with inn " + inn + " already exists");
+            return responseForm.error("Entity with INN " + inn + " already exists");
         if (name.length() > 12)
             return responseForm.error("Name cannot contain more than 100 characters");
         if (discount < 0)
@@ -132,7 +133,7 @@ public class ClientEntityManager {
         ClientEntity entity = entityRepository.findById(id).orElse(null);
 
         if (entity == null)
-            return responseForm.error("Client with id " + id + " not found");
+            return responseForm.error("Client with ID " + id + " not found");
 
         if (entity.getName().equals(name)
                 && entity.getInn().equals(inn)
@@ -141,7 +142,7 @@ public class ClientEntityManager {
                 && entity.getContractDate().equals(contractDate)
                 && entity.getTitle().equals(title)
                 && entity.getDescription().equals(description))
-            return responseForm.error("All params of " + name + " is equal");
+            return responseForm.error("All params of " + entity.getName() + " is equal");
 
         entity.setName(name);
         entity.setInn(inn);
@@ -171,17 +172,29 @@ public class ClientEntityManager {
         responseForm.function("delete");
 
         if (id == null)
-            return responseForm.error("Id cannot be null");
+            return responseForm.error("ID cannot be null");
         if (id < 1)
-            return responseForm.error("Id cannot be less than 1");
-        
+            return responseForm.error("ID cannot be less than 1");
+
         ClientEntity entity = entityRepository.findById(id).orElse(null);
 
         if (entity == null)
-            return responseForm.error("Client with id " + id + " not found");
+            return responseForm.error("Client with ID " + id + " not found");
 
         entity.setDeleted(true);
         entityRepository.save(entity);
+
+        ClientHistory history = new ClientHistory(
+                entity,
+                entity.getName(),
+                entity.getInn(),
+                entity.getDiscount(),
+                entity.getContractNumber(),
+                entity.getContractDate(),
+                entity.getTitle(),
+                entity.getDescription(),
+                null); // spring security system required
+        historyRepository.save(history);
 
         return responseForm.success("Deleted client: " + entity.getName());
     }
