@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("db/reg/")
 public class RegController {
 
-    private RegService regService;
+    // private RegService regService;
 
-    public RegController(
-            RegService regService) {
-        this.regService = regService;
-    }
+    // public RegController(
+    //         RegService regService) {
+    //     this.regService = regService;
+    // }
 
 }

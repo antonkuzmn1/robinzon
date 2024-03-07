@@ -111,7 +111,7 @@ public class NetEntityManager {
                 null); // spring security system required
         rentRepository.save(rent);
 
-        return responseForm.success("Updated net: " + entity.getSubnet());
+        return responseForm.success("Inserted new net: " + entity.getSubnet());
     }
 
     public ResponseForm update(
@@ -187,6 +187,7 @@ public class NetEntityManager {
         entity.setCloud(cloud);
         entity.setTitle(title);
         entity.setDescription(description);
+        entityRepository.save(entity);
 
         NetHistory history = new NetHistory(
                 entity,
@@ -217,7 +218,7 @@ public class NetEntityManager {
         NetEntity entity = entityRepository.findById(id).orElse(null);
 
         if (entity == null)
-            return responseForm.error("FM with ID " + id + " not found");
+            return responseForm.error("Net with ID " + id + " not found");
 
         entity.setDeleted(true);
         entityRepository.save(entity);

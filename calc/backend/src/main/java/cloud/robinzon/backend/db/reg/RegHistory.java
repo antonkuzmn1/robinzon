@@ -49,9 +49,18 @@ public class RegHistory {
     @Column(nullable = false, length = 50)
     private String provider;
 
+    @Column(nullable = false, length = 50)
+    private String title;
+
+    @Column(nullable = false, length = 255)
+    private String description;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private UserEntity changeBy;
+
+    @Column(nullable = false)
+    private boolean deleted;
 
     public RegHistory(
             RegEntity regEntity,
@@ -62,7 +71,10 @@ public class RegHistory {
             Date buyDate,
             int warrantyMonths,
             String provider,
-            UserEntity changeBy) {
+            String title,
+            String description,
+            UserEntity changeBy,
+            boolean deleted) {
         this.regEntity = regEntity;
         this.brand = brand;
         this.name = name;
@@ -71,7 +83,10 @@ public class RegHistory {
         this.buyDate = buyDate;
         this.warrantyMonths = warrantyMonths;
         this.provider = provider;
+        this.title = title;
+        this.description = description;
         this.changeBy = changeBy;
+        this.deleted = deleted;
     }
 
     public RegEntity getRegEntity() {
@@ -165,8 +180,35 @@ public class RegHistory {
                 + ", buyDate=" + buyDate
                 + ", warrantyMonths=" + warrantyMonths
                 + ", provider=" + provider
+                + ", title=" + title
+                + ", description" + description
                 + ", changeBy=" + changeBy
+                + ", deleted=" + deleted
                 + "]";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -182,7 +224,10 @@ public class RegHistory {
         result = prime * result + ((buyDate == null) ? 0 : buyDate.hashCode());
         result = prime * result + warrantyMonths;
         result = prime * result + ((provider == null) ? 0 : provider.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
+        result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
 
@@ -237,10 +282,22 @@ public class RegHistory {
                 return false;
         } else if (!provider.equals(other.provider))
             return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
+            return false;
         if (changeBy == null) {
             if (other.changeBy != null)
                 return false;
         } else if (!changeBy.equals(other.changeBy))
+            return false;
+        if (deleted != other.deleted)
             return false;
         return true;
     }

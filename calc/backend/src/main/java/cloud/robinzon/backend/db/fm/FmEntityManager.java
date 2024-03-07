@@ -155,6 +155,7 @@ public class FmEntityManager {
         entity.setDescription(description);
         entity.setPrice(price);
         entity.setVm(vm);
+        entityRepository.save(entity);
 
         FmHistory history = new FmHistory(
                 entity,

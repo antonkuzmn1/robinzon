@@ -46,6 +46,12 @@ public class RegEntity {
     @Column(nullable = false, length = 50)
     private String provider;
 
+    @Column(nullable = false, length = 50)
+    private String title;
+
+    @Column(nullable = false, length = 255)
+    private String description;
+
     @Column(nullable = false)
     private boolean deleted;
 
@@ -58,6 +64,8 @@ public class RegEntity {
             Date buyDate,
             int warrantyMonths,
             String provider,
+            String title,
+            String description,
             boolean deleted) {
         this.id = id;
         this.brand = brand;
@@ -67,6 +75,8 @@ public class RegEntity {
         this.buyDate = buyDate;
         this.warrantyMonths = warrantyMonths;
         this.provider = provider;
+        this.title = title;
+        this.description = description;
         this.deleted = deleted;
     }
 
@@ -77,6 +87,8 @@ public class RegEntity {
             String serial,
             Date buyDate,
             int warrantyMonths,
+            String title,
+            String description,
             String provider) {
         this.brand = brand;
         this.name = name;
@@ -84,6 +96,8 @@ public class RegEntity {
         this.serial = serial;
         this.buyDate = buyDate;
         this.warrantyMonths = warrantyMonths;
+        this.title = title;
+        this.description = description;
         this.provider = provider;
     }
 
@@ -178,8 +192,26 @@ public class RegEntity {
                 + ", buyDate=" + buyDate
                 + ", warrantyMonths=" + warrantyMonths
                 + ", provider=" + provider
+                + ", title=" + title
+                + ", description=" + description
                 + ", deleted=" + deleted
                 + "]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -195,6 +227,8 @@ public class RegEntity {
         result = prime * result + ((buyDate == null) ? 0 : buyDate.hashCode());
         result = prime * result + warrantyMonths;
         result = prime * result + ((provider == null) ? 0 : provider.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
@@ -249,6 +283,16 @@ public class RegEntity {
             if (other.provider != null)
                 return false;
         } else if (!provider.equals(other.provider))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        if (description == null) {
+            if (other.description != null)
+                return false;
+        } else if (!description.equals(other.description))
             return false;
         if (deleted != other.deleted)
             return false;
