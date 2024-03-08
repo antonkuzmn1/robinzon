@@ -46,7 +46,7 @@ public class VmHistory {
     @Column(nullable = false)
     private boolean running;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String title;
 
     @Column(nullable = false, length = 255)
@@ -60,6 +60,9 @@ public class VmHistory {
     @JoinColumn(nullable = false)
     private UserEntity changeBy;
 
+    @Column(nullable = false)
+    private boolean deleted;
+
     public VmHistory(
             VmEntity vmEntity,
             String name,
@@ -71,7 +74,8 @@ public class VmHistory {
             String title,
             String description,
             FmEntity fmEntity,
-            UserEntity changeBy) {
+            UserEntity changeBy,
+            boolean deleted) {
         this.vmEntity = vmEntity;
         this.name = name;
         this.cpu = cpu;
@@ -83,6 +87,7 @@ public class VmHistory {
         this.description = description;
         this.fmEntity = fmEntity;
         this.changeBy = changeBy;
+        this.deleted = deleted;
     }
 
     public VmEntity getVmEntity() {
@@ -195,7 +200,16 @@ public class VmHistory {
                 + ", description=" + description
                 + ", fmEntity=" + fmEntity
                 + ", changeBy=" + changeBy
+                + ", deleted=" + deleted
                 + "]";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -214,6 +228,7 @@ public class VmHistory {
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((fmEntity == null) ? 0 : fmEntity.hashCode());
         result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
+        result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
 
@@ -270,6 +285,8 @@ public class VmHistory {
             if (other.changeBy != null)
                 return false;
         } else if (!changeBy.equals(other.changeBy))
+            return false;
+        if (deleted != other.deleted)
             return false;
         return true;
     }

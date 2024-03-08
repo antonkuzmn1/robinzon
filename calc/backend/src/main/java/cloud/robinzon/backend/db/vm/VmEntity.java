@@ -20,6 +20,7 @@ import jakarta.persistence.Table;
 public class VmEntity {
 
     @Id
+    @Column(length = 36)
     private String id;
 
     @UpdateTimestamp
@@ -43,7 +44,7 @@ public class VmEntity {
     @Column(nullable = false)
     private boolean running;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String title;
 
     @Column(nullable = false, length = 255)
@@ -51,11 +52,11 @@ public class VmEntity {
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private FmEntity fm;
+    private FmEntity fmEntity;
 
     @ManyToOne
     @JoinColumn
-    private ClientEntity client;
+    private ClientEntity clientEntity;
 
     @Column(nullable = false)
     private boolean deleted;
@@ -68,11 +69,7 @@ public class VmEntity {
             int ssd,
             int hdd,
             boolean running,
-            String title,
-            String description,
-            FmEntity fm,
-            ClientEntity client,
-            boolean deleted) {
+            FmEntity fmEntity) {
         this.id = id;
         this.name = name;
         this.cpu = cpu;
@@ -80,30 +77,7 @@ public class VmEntity {
         this.ssd = ssd;
         this.hdd = hdd;
         this.running = running;
-        this.title = title;
-        this.description = description;
-        this.fm = fm;
-        this.client = client;
-        this.deleted = deleted;
-    }
-
-    public VmEntity(
-            String id,
-            String name,
-            int cpu,
-            int ram,
-            int ssd,
-            int hdd,
-            boolean running,
-            FmEntity fm) {
-        this.id = id;
-        this.name = name;
-        this.cpu = cpu;
-        this.ram = ram;
-        this.ssd = ssd;
-        this.hdd = hdd;
-        this.running = running;
-        this.fm = fm;
+        this.fmEntity = fmEntity;
     }
 
     public String getId() {
@@ -186,20 +160,20 @@ public class VmEntity {
         this.description = description;
     }
 
-    public FmEntity getFm() {
-        return fm;
+    public FmEntity getFmEntity() {
+        return fmEntity;
     }
 
-    public void setFm(FmEntity fm) {
-        this.fm = fm;
+    public void setFmEntity(FmEntity fmEntity) {
+        this.fmEntity = fmEntity;
     }
 
-    public ClientEntity getClient() {
-        return client;
+    public ClientEntity getClientEntity() {
+        return clientEntity;
     }
 
-    public void setClient(ClientEntity client) {
-        this.client = client;
+    public void setClientEntity(ClientEntity clientEntity) {
+        this.clientEntity = clientEntity;
     }
 
     public boolean isDeleted() {
@@ -222,8 +196,8 @@ public class VmEntity {
                 + ", running=" + running
                 + ", title=" + title
                 + ", description=" + description
-                + ", fm=" + fm
-                + ", client=" + client
+                + ", fmEntity=" + fmEntity
+                + ", clientEntity=" + clientEntity
                 + ", deleted=" + deleted
                 + "]";
     }
@@ -242,8 +216,8 @@ public class VmEntity {
         result = prime * result + (running ? 1231 : 1237);
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((fm == null) ? 0 : fm.hashCode());
-        result = prime * result + ((client == null) ? 0 : client.hashCode());
+        result = prime * result + ((fmEntity == null) ? 0 : fmEntity.hashCode());
+        result = prime * result + ((clientEntity == null) ? 0 : clientEntity.hashCode());
         result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
@@ -292,15 +266,15 @@ public class VmEntity {
                 return false;
         } else if (!description.equals(other.description))
             return false;
-        if (fm == null) {
-            if (other.fm != null)
+        if (fmEntity == null) {
+            if (other.fmEntity != null)
                 return false;
-        } else if (!fm.equals(other.fm))
+        } else if (!fmEntity.equals(other.fmEntity))
             return false;
-        if (client == null) {
-            if (other.client != null)
+        if (clientEntity == null) {
+            if (other.clientEntity != null)
                 return false;
-        } else if (!client.equals(other.client))
+        } else if (!clientEntity.equals(other.clientEntity))
             return false;
         if (deleted != other.deleted)
             return false;
