@@ -2,12 +2,8 @@
 (Github repository)[https://github.com/antonkuzmn1/robinzon/tree/main/calc]
 
 > [!TIP]
-> - #### ✅⏳🛑 Meaning
->     - [ ] test
->     - [x] test
->     - ✅ Ready
->     - ⏳ At work
->     - 🛑 Not started
+> [x]Ready
+> [ ]Not ready
 
 - ## ⏳ Calc
     - ### ⏳ Backend (est. 40%)
