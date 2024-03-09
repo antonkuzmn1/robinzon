@@ -2,9 +2,9 @@
 (Github repository)[https://github.com/antonkuzmn1/robinzon/tree/main/calc]
 
 > [!TIP]
-> ✅ Ready
-> ⏳ At work
-> 🛑 Not started
+> - ✅ Ready
+> - ⏳ At work
+> - 🛑 Not started
 
 - ## ⏳ Calc
     - ### ⏳ Backend (est. 40%)
