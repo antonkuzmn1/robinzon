@@ -2,8 +2,8 @@
 (Github repository)[https://github.com/antonkuzmn1/robinzon/tree/main/calc]
 
 > [!TIP]
-> - [x]Ready
-> - [ ]Not ready
+> - [x] Ready
+> - [ ] Not ready
 
 - ## ⏳ Calc
     - ### ⏳ Backend (est. 40%)
