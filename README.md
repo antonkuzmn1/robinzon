@@ -1,6 +1,7 @@
 # Progress list
 
-(Github repository) [https://github.com/antonkuzmn1/robinzon/tree/main/calc]
+Github repository:
+`https://github.com/antonkuzmn1/robinzon/tree/main/calc`
 
 > [!TIP]
 > - ✅ Ready
