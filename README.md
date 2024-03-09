@@ -1,6 +1,6 @@
 # Progress list
 
-(Github repository)[https://github.com/antonkuzmn1/robinzon/tree/main/calc]
+[https://github.com/antonkuzmn1/robinzon/tree/main/calc](Github repository)
 
 > [!TIP]
 > - ✅ Ready
@@ -27,12 +27,17 @@
                     - ✅ net
                     - ✅ reg
                     - ✅ vm
-                    - 🛑 vpn.server
-                    - 🛑 vpn.user
-                    - 🛑 security.group
-                    - 🛑 security.user
-                    - 🛑 settings.vm.price
-                    - 🛑 settings.vpn.type
+                    - 🛑 vpn
+                        - 🛑 server
+                        - 🛑 user
+                    - 🛑 security
+                        - 🛑 group
+                        - 🛑 user
+                    - 🛑 settings
+                        - 🛑 vm
+                            - 🛑 price
+                        - 🛑 vpn
+                            - 🛑 type
         - #### 🛑 Security
             - 🛑 Authorization
             - 🛑 Cryptography
