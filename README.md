@@ -2,7 +2,7 @@
 (Github repository)[https://github.com/antonkuzmn1/robinzon/tree/main/calc]
 
 > [!TIP]
-> [x]Ready
+> [X]Ready
 > [ ]Not ready
 
 - ## ⏳ Calc
