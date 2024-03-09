@@ -1,10 +1,10 @@
-db/client/
-db/fm/
-db/net/
-db/reg/
-db/vm/
-db/vpn/server/
-db/vpn/user/
-security/group/
-security/user/
-settings/
+- db/client/
+- db/fm/
+- db/net/
+- db/reg/
+- db/vm/
+- db/vpn/server/
+- db/vpn/user/
+- security/group/
+- security/user/
+- settings/
