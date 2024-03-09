@@ -1,2 +1,44 @@
-# robinzon
-etwa description
+# Progress list
+(Github repository)[https://github.com/antonkuzmn1/robinzon/tree/main/calc]
+
+- #### Meaning
+    - ✅ - Ready
+    - ⏳ - At work
+    - 🛑 - Not started
+
+- ## ⏳Calc
+    - #### ⏳Backend
+        - ######⏳1 - Architecture
+            - ✅1.1 - Entities
+            - ✅1.2 - Keys
+            - ✅1.3 - Repositories
+            - ✅1.4 - Services
+            - ✅1.5 - Controllers
+            - ⏳1.6 - Listeners
+                - ✅1.6.1 - Logging-form
+                - ✅1.6.2 - Response-form
+                - ✅1.6.3 - Pre/postPersist
+                - ✅1.6.4 - Pre/postUpdate
+                - ✅1.6.5 - Pre/postDelete
+                - ⏳1.6.6 - Template adaptation
+                    - ✅1.6.6.1 - client
+                    - ✅1.6.6.2 - fm
+                    - ✅1.6.6.3 - net
+                    - ✅1.6.6.4 - reg
+                    - ✅1.6.6.5 - vm
+                    - 🛑1.6.6.6 - vpn.server
+                    - 🛑1.6.6.7 - vpn.user
+                    - 🛑1.6.6.8 - security.group
+                    - 🛑1.6.6.9 - security.user
+                    - 🛑1.6.6.10 - settings.vm.price
+                    - 🛑1.6.6.11 - settings.vpn.type
+        - ###### 🛑2 - Security
+            - 🛑2.1 - Authorization
+            - 🛑2.2 - Cryptography
+            - 🛑2.3 - Sessions
+            - 🛑2.4 - Groups
+        - ###### 🛑3 - Other services
+            - 🛑3.1 - FM request via SSH
+        - ###### 🛑4 - Cache management
+            - 🛑4.1 - Real time tables for virtual DOM
+    - #### 🛑Frontend
