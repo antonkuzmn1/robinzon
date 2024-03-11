@@ -193,4 +193,12 @@ public class VmEntityManager {
         return responseForm.error("Function not working");
     }
 
+    public ResponseForm deleteAll() {
+        responseForm.function("deleteAll");
+
+        entityRepository.markAsDeletedAll();
+
+        return responseForm.success("All VM has been succefuly marked as deleted");
+    }
+
 }
