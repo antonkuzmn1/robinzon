@@ -24,7 +24,7 @@ import cloud.robinzon.backend.db.net.NetEntity;
 import cloud.robinzon.backend.db.net.NetEntityRepository;
 import cloud.robinzon.backend.settings.vpn.type.VpnTypeEntity;
 import cloud.robinzon.backend.tools.ResponseForm;
-import cloud.robinzon.backend.tools.ResponseTemplates;
+import cloud.robinzon.backend.tools.ResponseStringTemplates;
 
 /**
  * <h3>Entity Management Tools</h3>
@@ -54,7 +54,7 @@ import cloud.robinzon.backend.tools.ResponseTemplates;
 @Service
 public final class VpnServerEntityManager
         extends ResponseForm
-        implements ResponseTemplates {
+        implements ResponseStringTemplates {
 
     /**
      * <h3>Initialize string builder for error collector.</h3>
@@ -101,9 +101,9 @@ public final class VpnServerEntityManager
      * @param publicKey     - the public key {@code 50 chars};
      * @param netEntity     - the NetEntity reference;
      * @param vpnTypeEntity - the VPN type entity-list;
-     * @return a standard response form
+     * @return A standard response form
      *         that contains the class name,
-     *         functions, status and text
+     *         functions, status and text.
      * @since 2023.03.13
      * @author Anton Kuzmin
      */
@@ -180,7 +180,8 @@ public final class VpnServerEntityManager
                                     : "")
                     .append(
                             !netEntityRepository.checkUniqueSubnet(netEntity.getSubnet())
-                                    ? "Net with ID " + netEntity.getId() + " not found"
+                                    ? "Net with ID " + netEntity.getId()
+                                            + " not found"
                                     : "")
                     .append(
                             vpnTypeEntity.size() == 0
@@ -272,7 +273,7 @@ public final class VpnServerEntityManager
      * @param publicKey     - the public key {@code 50 chars};
      * @param netEntity     - the reference to a NetEntity object;
      * @param vpnTypeEntity - the list of VPN type entities;
-     * @return a standard response form
+     * @return A standard response form
      *         that contains the class name,
      *         functions, status and text.
      * @since 2023.03.13
@@ -357,7 +358,8 @@ public final class VpnServerEntityManager
                                     : "")
                     .append(
                             !netEntityRepository.checkUniqueSubnet(netEntity.getSubnet())
-                                    ? "Net with ID " + netEntity.getId() + " not found"
+                                    ? "Net with ID " + netEntity.getId()
+                                            + " not found"
                                     : "")
                     .append(
                             vpnTypeEntity.size() == 0
@@ -387,10 +389,14 @@ public final class VpnServerEntityManager
                                     && entity.getDescription().equals(description)
                                     && entity.getIp().equals(ip)
                                     && entity.getPublicKey().equals(publicKey)
-                                    && entity.getNetEntity().getId().equals(netEntity.getId())
-                                    && entity.getVpnTypeEntity().equals(vpnTypeEntity)
-                                            ? "All params of " + entity.getIp() + " is equal"
-                                            : "");
+                                    && entity.getNetEntity().getId()
+                                            .equals(netEntity.getId())
+                                    && entity.getVpnTypeEntity()
+                                            .equals(vpnTypeEntity)
+                                                    ? "All params of "
+                                                            + entity.getIp()
+                                                            + " is equal"
+                                                    : "");
 
             // Termination of the function if errors were detected.
             if (err.length() > 0)
@@ -470,7 +476,7 @@ public final class VpnServerEntityManager
      * </p>
      *
      * @param id - the unique identifier of the entity;
-     * @return a standard response form
+     * @return A standard response form
      *         that contains the class name,
      *         functions, status and text.
      * @since 2023.03.13
@@ -527,7 +533,8 @@ public final class VpnServerEntityManager
                      */
                     .append(
                             entity.isDeleted() == true
-                                    ? "Entity with ID" + entity.getId() + " already deleted"
+                                    ? "Entity with ID" + entity.getId()
+                                            + " already deleted"
                                     : "");
 
             // Termination of the function if errors were detected.
