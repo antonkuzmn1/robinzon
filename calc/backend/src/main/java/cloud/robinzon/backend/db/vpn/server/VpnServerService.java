@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class VpnServerService {
 
-    private VpnServerEntityRepository vpnServerEntityRepository;
+    // private VpnServerEntityRepository vpnServerEntityRepository;
 
-    public VpnServerService(
-            VpnServerEntityRepository vpnServerEntityRepository) {
-        this.vpnServerEntityRepository = vpnServerEntityRepository;
-    }
+    // public VpnServerService(
+    //         VpnServerEntityRepository vpnServerEntityRepository) {
+    //     this.vpnServerEntityRepository = vpnServerEntityRepository;
+    // }
 
 }

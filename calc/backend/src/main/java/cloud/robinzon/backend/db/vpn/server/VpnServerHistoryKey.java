@@ -3,7 +3,8 @@ package cloud.robinzon.backend.db.vpn.server;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class VpnServerHistoryKey implements Serializable {
+public class VpnServerHistoryKey
+        implements Serializable {
 
     private VpnServerEntity vpnServerEntity;
     private Timestamp timestamp;

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("db/vpn/server/")
 public class VpnServerController {
 
-    private VpnServerService vpnServerService;
+    // private VpnServerService vpnServerService;
 
-    public VpnServerController(
-            VpnServerService vpnServerService) {
-        this.vpnServerService = vpnServerService;
-    }
+    // public VpnServerController(
+    //         VpnServerService vpnServerService) {
+    //     this.vpnServerService = vpnServerService;
+    // }
 
 }

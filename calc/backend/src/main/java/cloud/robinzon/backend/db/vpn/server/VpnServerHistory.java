@@ -60,6 +60,9 @@ public class VpnServerHistory {
     @JoinColumn
     private UserEntity changeBy;
 
+    @Column(nullable = false)
+    private boolean deleted;
+
     public VpnServerHistory(
             VpnServerEntity vpnServerEntity,
             String title,
@@ -68,7 +71,8 @@ public class VpnServerHistory {
             String publicKey,
             NetEntity netEntity,
             Set<VpnTypeEntity> vpnTypeEntity,
-            UserEntity changeBy) {
+            UserEntity changeBy,
+            boolean deleted) {
         this.vpnServerEntity = vpnServerEntity;
         this.title = title;
         this.description = description;
@@ -77,6 +81,7 @@ public class VpnServerHistory {
         this.netEntity = netEntity;
         this.vpnTypeEntity = vpnTypeEntity;
         this.changeBy = changeBy;
+        this.deleted = deleted;
     }
 
     public VpnServerEntity getVpnServerEntity() {
@@ -162,7 +167,16 @@ public class VpnServerHistory {
                 + ", netEntity=" + netEntity
                 + ", vpnTypeEntity=" + vpnTypeEntity
                 + ", changeBy=" + changeBy
+                + ", deleted=" + deleted
                 + "]";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -178,6 +192,7 @@ public class VpnServerHistory {
         result = prime * result + ((netEntity == null) ? 0 : netEntity.hashCode());
         result = prime * result + ((vpnTypeEntity == null) ? 0 : vpnTypeEntity.hashCode());
         result = prime * result + ((changeBy == null) ? 0 : changeBy.hashCode());
+        result = prime * result + (deleted ? 1231 : 1237);
         return result;
     }
 
@@ -234,6 +249,8 @@ public class VpnServerHistory {
             if (other.changeBy != null)
                 return false;
         } else if (!changeBy.equals(other.changeBy))
+            return false;
+        if (deleted != other.deleted)
             return false;
         return true;
     }
