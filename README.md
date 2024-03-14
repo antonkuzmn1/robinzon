@@ -26,7 +26,7 @@
           - ✅ reg
           - ✅ vm
           - 🛑 vpn
-            - 🛑 server
+            - ✅ server
             - 🛑 user
           - 🛑 security
             - 🛑 group

@@ -179,9 +179,8 @@ public final class VpnServerEntityManager
                                     ? setNull("Net entity")
                                     : "")
                     .append(
-                            !netEntityRepository.checkUniqueSubnet(netEntity.getSubnet())
-                                    ? "Net with ID " + netEntity.getId()
-                                            + " not found"
+                            netEntityRepository.findById(netEntity.getId()) == null
+                                    ? "Net with ID " + netEntity.getId() + " not found"
                                     : "")
                     .append(
                             vpnTypeEntity.size() == 0
@@ -357,9 +356,8 @@ public final class VpnServerEntityManager
                                     ? setNull("Net entity")
                                     : "")
                     .append(
-                            !netEntityRepository.checkUniqueSubnet(netEntity.getSubnet())
-                                    ? "Net with ID " + netEntity.getId()
-                                            + " not found"
+                            netEntityRepository.findById(netEntity.getId()) == null
+                                    ? "Net with ID " + netEntity.getId() + " not found"
                                     : "")
                     .append(
                             vpnTypeEntity.size() == 0
@@ -389,14 +387,10 @@ public final class VpnServerEntityManager
                                     && entity.getDescription().equals(description)
                                     && entity.getIp().equals(ip)
                                     && entity.getPublicKey().equals(publicKey)
-                                    && entity.getNetEntity().getId()
-                                            .equals(netEntity.getId())
-                                    && entity.getVpnTypeEntity()
-                                            .equals(vpnTypeEntity)
-                                                    ? "All params of "
-                                                            + entity.getIp()
-                                                            + " is equal"
-                                                    : "");
+                                    && entity.getNetEntity().getId().equals(netEntity.getId())
+                                    && entity.getVpnTypeEntity().equals(vpnTypeEntity)
+                                            ? "All params of " + entity.getIp() + " is equal"
+                                            : "");
 
             // Termination of the function if errors were detected.
             if (err.length() > 0)
