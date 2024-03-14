@@ -49,7 +49,7 @@ package cloud.robinzon.backend.tools;
  * Read more in the attached documents for each method.
  * </p>
  *
- * @since 2023.03.13
+ * @since 2024.03.13
  * @author Anton Kuzmin
  */
 
@@ -94,7 +94,7 @@ public interface ResponseStringTemplates {
      * @param column - enter column name;
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String setNull(String column) {
@@ -115,7 +115,7 @@ public interface ResponseStringTemplates {
      * @param limit  - the line length limit;
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String setChar(String column, int limit) {
@@ -138,7 +138,7 @@ public interface ResponseStringTemplates {
      * @param limit  - maximum value;
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String setMore(String column, int limit) {
@@ -160,7 +160,7 @@ public interface ResponseStringTemplates {
      * @param limit  - minimum value;
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String setLess(String column, int limit) {
@@ -183,7 +183,7 @@ public interface ResponseStringTemplates {
      *               logs (name for example);
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String inserted(String entity, String name) {
@@ -206,7 +206,7 @@ public interface ResponseStringTemplates {
      *               logs (name for example);
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String updated(String entity, String name) {
@@ -229,7 +229,7 @@ public interface ResponseStringTemplates {
      *               logs (name for example);
      * @return A ready template string.
      *
-     * @since 2023.03.13
+     * @since 2024.03.13
      * @author Anton Kuzmin
      */
     default String deleted(String entity, String name) {

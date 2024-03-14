@@ -47,7 +47,7 @@ import cloud.robinzon.backend.tools.ResponseStringTemplates;
  * Read more in the attached documents for each method.
  * </p>
  *
- * @since 2023.03.13
+ * @since 2024.03.13
  * @author Anton Kuzmin
  */
 
@@ -104,7 +104,7 @@ public final class VpnServerEntityManager
 	 * @return A standard response form
 	 *         that contains the class name,
 	 *         functions, status and text.
-	 * @since 2023.03.13
+	 * @since 2024.03.13
 	 * @author Anton Kuzmin
 	 */
 	public ResponseForm insert(
@@ -275,7 +275,7 @@ public final class VpnServerEntityManager
 	 * @return A standard response form
 	 *         that contains the class name,
 	 *         functions, status and text.
-	 * @since 2023.03.13
+	 * @since 2024.03.13
 	 * @author Anton Kuzmin
 	 */
 	public ResponseForm update(
@@ -473,7 +473,7 @@ public final class VpnServerEntityManager
 	 * @return A standard response form
 	 *         that contains the class name,
 	 *         functions, status and text.
-	 * @since 2023.03.13
+	 * @since 2024.03.13
 	 * @author Anton Kuzmin
 	 */
 	public ResponseForm delete(Long id) {
