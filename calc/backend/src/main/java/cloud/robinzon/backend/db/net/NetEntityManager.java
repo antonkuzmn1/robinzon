@@ -181,7 +181,7 @@ public class NetEntityManager
                                     : "")
                     .append(
                             entityRepository.checkUniqueSubnet(subnet)
-                                    ? "Net with subnet " + subnet + " already exists"
+                                    ? String.format("Net with subnet %s already exists", subnet)
                                     : "")
                     .append(
                             subnet.length() > 15
@@ -229,7 +229,7 @@ public class NetEntityManager
                                     : "")
                     .append(
                             clientEntityRepository.findById(clientEntity.getId()) == null
-                                    ? "Client with ID " + clientEntity.getId() + " not found"
+                                    ? String.format("Client with ID %d not found", clientEntity.getId())
                                     : "");
 
             // Termination of the function if errors were detected.
@@ -410,7 +410,7 @@ public class NetEntityManager
                                     : "")
                     .append(
                             entityRepository.checkUniqueSubnet(subnet)
-                                    ? "Net with subnet " + subnet + " already exists"
+                                    ? String.format("Net with subnet %s already exists", subnet)
                                     : "")
                     .append(
                             subnet.length() > 15
@@ -485,7 +485,7 @@ public class NetEntityManager
                                     && entity.isCloud() == cloud
                                     && entity.getTitle().equals(title)
                                     && entity.getDescription().equals(description)
-                                            ? "All params of " + entity.getSubnet() + " is equal"
+                                            ? String.format("All params of %s is equal", entity.getSubnet())
                                             : "");
 
             // Termination of the function if errors were detected.
@@ -613,7 +613,7 @@ public class NetEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "Entity with ID " + id + " not found"
+                                    ? String.format("Entity with ID %d not found", id)
                                     : "")
 
                     /**
@@ -625,7 +625,7 @@ public class NetEntityManager
                      */
                     .append(
                             entity.isDeleted() == true
-                                    ? "Entity with ID" + entity.getId() + " already deleted"
+                                    ? String.format("Entity with ID %d already deleted", entity.getId())
                                     : "");
 
             // Termination of the function if errors were detected.
