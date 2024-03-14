@@ -285,9 +285,7 @@ public class VmEntityManager
 
                 // The function execution was successful!
                 return super.success(
-                        inserted(
-                                "VM",
-                                entityNew.getName()));
+                        inserted(entityNew.getName()));
             }
 
             // Setting new values.
@@ -317,9 +315,7 @@ public class VmEntityManager
 
             // The function execution was successful!
             return super.success(
-                    updated(
-                            "VM",
-                            entity.getName()));
+                    updated(entity.getName()));
 
         } catch (Exception e) {
             /**
@@ -488,9 +484,7 @@ public class VmEntityManager
 
             // The function execution was successful!
             return super.success(
-                    updated(
-                            "VM",
-                            entity.getName()));
+                    updated(entity.getName()));
 
         } catch (Exception e) {
             /**

@@ -172,7 +172,7 @@ public class RegEntityManager
                                     ? setNull("Name")
                                     : "")
                     .append(
-                            title.length() > 50
+                            name.length() > 50
                                     ? setChar("Name", 100)
                                     : "")
                     .append(
@@ -257,9 +257,7 @@ public class RegEntityManager
 
             // The function execution was successful!
             return super.success(
-                    inserted(
-                            "Reg",
-                            entity.getName()));
+                    inserted(entity.getName()));
 
         } catch (Exception e) {
             /**
@@ -416,7 +414,7 @@ public class RegEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "Reg with ID " + id + " not found"
+                                    ? "Entity with ID " + id + " not found"
                                     : "")
 
                     /**
@@ -492,9 +490,7 @@ public class RegEntityManager
 
             // The function execution was successful!
             return super.success(
-                    updated(
-                            "Reg",
-                            entity.getName()));
+                    updated(entity.getName()));
 
         } catch (Exception e) {
             /**
@@ -567,7 +563,7 @@ public class RegEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "VPN server with ID " + id + " not found"
+                                    ? "Entity with ID " + id + " not found"
                                     : "")
 
                     /**
@@ -627,9 +623,7 @@ public class RegEntityManager
 
             // The function execution was successful!
             return super.success(
-                    deleted(
-                            "Reg",
-                            entity.getName()));
+                    deleted(entity.getName()));
 
         } catch (Exception e) {
             /**

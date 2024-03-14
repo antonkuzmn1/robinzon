@@ -186,11 +186,9 @@ public interface ResponseStringTemplates {
      * @since 2024.03.13
      * @author Anton Kuzmin
      */
-    default String inserted(String entity, String name) {
+    default String inserted(String name) {
         return sb
-                .append("Inserted new ")
-                .append(entity)
-                .append(": ")
+                .append("Inserted: ")
                 .append(name)
                 .toString();
     }
@@ -209,11 +207,9 @@ public interface ResponseStringTemplates {
      * @since 2024.03.13
      * @author Anton Kuzmin
      */
-    default String updated(String entity, String name) {
+    default String updated(String name) {
         return sb
-                .append("Updated ")
-                .append(entity)
-                .append(": ")
+                .append("Updated: ")
                 .append(name)
                 .toString();
     }
@@ -232,11 +228,9 @@ public interface ResponseStringTemplates {
      * @since 2024.03.13
      * @author Anton Kuzmin
      */
-    default String deleted(String entity, String name) {
+    default String deleted(String name) {
         return sb
-                .append("Deleted ")
-                .append(entity)
-                .append(": ")
+                .append("Deleted: ")
                 .append(name)
                 .toString();
     }

@@ -236,9 +236,7 @@ public final class VpnServerEntityManager
 
 			// The function execution was successful!
 			return super.success(
-					inserted(
-							"VPN server",
-							entity.getIp()));
+					inserted(entity.getIp()));
 
 		} catch (Exception e) {
 			/**
@@ -440,9 +438,7 @@ public final class VpnServerEntityManager
 
 			// The function execution was successful!
 			return super.success(
-					updated(
-							"VPN server",
-							entity.getIp()));
+					updated(entity.getIp()));
 
 		} catch (Exception e) {
 			/**
@@ -573,9 +569,7 @@ public final class VpnServerEntityManager
 
 			// The function execution was successful!
 			return super.success(
-					deleted(
-							"VPN server",
-							entity.getIp()));
+					deleted(entity.getIp()));
 
 		} catch (Exception e) {
 			/**
