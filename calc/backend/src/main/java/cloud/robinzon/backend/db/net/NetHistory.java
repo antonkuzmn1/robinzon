@@ -61,6 +61,22 @@ public class NetHistory {
     @Column(nullable = false)
     private boolean deleted;
 
+    /**
+     * <h3>New entity</h3>
+     *
+     * @param netEntity
+     * @param changeBy
+     * @param domain
+     * @param subnet
+     * @param mask
+     * @param dns1
+     * @param dns2
+     * @param dns3
+     * @param cloud
+     * @param title
+     * @param description
+     * @param deleted
+     */
     public NetHistory(
             NetEntity netEntity,
             UserEntity changeBy,
@@ -86,6 +102,29 @@ public class NetHistory {
         this.title = title;
         this.description = description;
         this.deleted = deleted;
+    }
+
+    /**
+     * <h3>Delete entity</h3>
+     *
+     * @param netEntity
+     * @param changeBy
+     */
+    public NetHistory(
+            NetEntity netEntity,
+            UserEntity changeBy) {
+        this.netEntity = netEntity;
+        this.changeBy = changeBy;
+        this.domain = netEntity.getDomain();
+        this.subnet = netEntity.getSubnet();
+        this.mask = netEntity.getMask();
+        this.dns1 = netEntity.getDns1();
+        this.dns2 = netEntity.getDns2();
+        this.dns3 = netEntity.getDns3();
+        this.cloud = netEntity.isCloud();
+        this.title = netEntity.getTitle();
+        this.description = netEntity.getDescription();
+        this.deleted = true;
     }
 
     public NetEntity getNetEntity() {

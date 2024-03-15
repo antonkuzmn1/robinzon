@@ -176,11 +176,11 @@ public class FmEntityManager
                                     : "")
                     .append(
                             entityRepository.checkUniqueIp(ip)
-                                    ? "FM with IP " + ip + " already exists"
+                                    ? String.format("FM with IP %s already exists", ip)
                                     : "")
                     .append(
                             clientEntityRepository.findById(clientEntity.getId()) == null
-                                    ? "Client with ID " + clientEntity.getId() + " not found"
+                                    ? String.format("Client with ID %d not found", clientEntity.getId())
                                     : "")
                     .append(
                             price < 0
@@ -236,23 +236,25 @@ public class FmEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new FmHistory(
-                    entity,
-                    name,
-                    ip,
-                    title,
-                    specifications,
-                    description,
-                    price,
-                    vm,
-                    null, // spring security system required
-                    false));
+            historyRepository.save(
+                    new FmHistory(
+                            entity,
+                            name,
+                            ip,
+                            title,
+                            specifications,
+                            description,
+                            price,
+                            vm,
+                            null, // spring security system required
+                            false));
 
             // Adding a new entry to the entity rent history.
-            rentRepository.save(new FmRent(
-                    entity,
-                    clientEntity,
-                    null)); // spring security system required
+            rentRepository.save(
+                    new FmRent(
+                            entity,
+                            clientEntity,
+                            null)); // spring security system required
 
             // The function execution was successful!
             return super.success(
@@ -368,7 +370,7 @@ public class FmEntityManager
                                     : "")
                     .append(
                             entityRepository.checkUniqueIp(ip)
-                                    ? "FM with IP " + ip + " already exists"
+                                    ? String.format("FM with IP %s already exists", ip)
                                     : "")
                     .append(
                             price < 0
@@ -413,7 +415,7 @@ public class FmEntityManager
                                     && entity.getDescription().equals(description)
                                     && entity.getPrice() == price
                                     && entity.getVm() == vm
-                                            ? "All params of " + entity.getName() + " is equal"
+                                            ? String.format("All params of %s is equal", entity.getName())
                                             : "");
 
             // Termination of the function if errors were detected.
@@ -451,17 +453,18 @@ public class FmEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new FmHistory(
-                    entity,
-                    name,
-                    ip,
-                    title,
-                    specifications,
-                    description,
-                    price,
-                    vm,
-                    null, // spring security system required
-                    false));
+            historyRepository.save(
+                    new FmHistory(
+                            entity,
+                            name,
+                            ip,
+                            title,
+                            specifications,
+                            description,
+                            price,
+                            vm,
+                            null, // spring security system required
+                            false));
 
             // The function execution was successful!
             return super.success(
@@ -538,7 +541,7 @@ public class FmEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "Entity with ID " + id + " not found"
+                                    ? String.format("Entity with ID %d not found", id)
                                     : "")
 
                     /**
@@ -550,7 +553,7 @@ public class FmEntityManager
                      */
                     .append(
                             entity.isDeleted() == true
-                                    ? "Entity with ID" + entity.getId() + " already deleted"
+                                    ? String.format("Entity with ID %d already deleted", entity.getId())
                                     : "");
 
             // Termination of the function if errors were detected.
@@ -582,17 +585,10 @@ public class FmEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new FmHistory(
-                    entity,
-                    entity.getName(),
-                    entity.getIp(),
-                    entity.getTitle(),
-                    entity.getSpecifications(),
-                    entity.getDescription(),
-                    entity.getPrice(),
-                    entity.getVm(),
-                    null, // spring security system required
-                    true));
+            historyRepository.save(
+                    new FmHistory(
+                            entity,
+                            null)); // spring security system required
 
             // The function execution was successful!
             return super.success(

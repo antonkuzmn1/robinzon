@@ -55,6 +55,20 @@ public class FmHistory {
     @Column(nullable = false)
     private boolean deleted;
 
+    /**
+     * <h3>New entity</h3>
+     *
+     * @param fmEntity
+     * @param name
+     * @param ip
+     * @param title
+     * @param specifications
+     * @param description
+     * @param price
+     * @param vm
+     * @param changeBy
+     * @param deleted
+     */
     public FmHistory(
             FmEntity fmEntity,
             String name,
@@ -76,6 +90,27 @@ public class FmHistory {
         this.vm = vm;
         this.changeBy = changeBy;
         this.deleted = deleted;
+    }
+
+    /**
+     * <h3>Delete entity</h3>
+     *
+     * @param fmEntity
+     * @param changeBy
+     */
+    public FmHistory(
+            FmEntity fmEntity,
+            UserEntity changeBy) {
+        this.fmEntity = fmEntity;
+        this.name = fmEntity.getName();
+        this.ip = fmEntity.getIp();
+        this.title = fmEntity.getTitle();
+        this.specifications = fmEntity.getSpecifications();
+        this.description = fmEntity.getDescription();
+        this.price = fmEntity.getPrice();
+        this.vm = fmEntity.getVm();
+        this.changeBy = changeBy;
+        this.deleted = true;
     }
 
     public FmEntity getFmEntity() {

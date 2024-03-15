@@ -271,25 +271,27 @@ public class NetEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new NetHistory(
-                    entity,
-                    null, // spring security system required
-                    domain,
-                    subnet,
-                    mask,
-                    dns1,
-                    dns2,
-                    dns3,
-                    cloud,
-                    title,
-                    description,
-                    false));
+            historyRepository.save(
+                    new NetHistory(
+                            entity,
+                            null, // spring security system required
+                            domain,
+                            subnet,
+                            mask,
+                            dns1,
+                            dns2,
+                            dns3,
+                            cloud,
+                            title,
+                            description,
+                            false));
 
             // Adding a new entry to the entity rent history.
-            rentRepository.save(new NetRent(
-                    entity,
-                    clientEntity,
-                    null)); // spring security system required
+            rentRepository.save(
+                    new NetRent(
+                            entity,
+                            clientEntity,
+                            null)); // spring security system required
 
             // The function execution was successful!
             return super.success(
@@ -524,19 +526,20 @@ public class NetEntityManager
             entity.setDescription(description);
             entityRepository.save(entity);
 
-            historyRepository.save(new NetHistory(
-                    entity,
-                    null, // spring security system required
-                    domain,
-                    subnet,
-                    mask,
-                    dns1,
-                    dns2,
-                    dns3,
-                    cloud,
-                    title,
-                    description,
-                    false));
+            historyRepository.save(
+                    new NetHistory(
+                            entity,
+                            null, // spring security system required
+                            domain,
+                            subnet,
+                            mask,
+                            dns1,
+                            dns2,
+                            dns3,
+                            cloud,
+                            title,
+                            description,
+                            false));
 
             // The function execution was successful!
             return super.success(
@@ -556,7 +559,7 @@ public class NetEntityManager
         }
     }
 
-        /**
+    /**
      * <h3>Deleting an existing entry in the database.</h3>
      * <p>
      * The function implements all the necessary checks
@@ -576,7 +579,7 @@ public class NetEntityManager
      */
     public ResponseForm delete(Long id) {
 
-                // Setting the function name for the logging class.
+        // Setting the function name for the logging class.
         super.function(delete);
 
         // Searching for an entity by ID in the repository.
@@ -657,19 +660,10 @@ public class NetEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new NetHistory(
-                entity,
-                null, // spring security system required
-                entity.getDomain(),
-                entity.getSubnet(),
-                entity.getMask(),
-                entity.getDns1(),
-                entity.getDns2(),
-                entity.getDns3(),
-                entity.isCloud(),
-                entity.getTitle(),
-                entity.getDescription(),
-                true));
+            historyRepository.save(
+                    new NetHistory(
+                            entity,
+                            null)); // spring security system required
 
             // The function execution was successful!
             return super.success(

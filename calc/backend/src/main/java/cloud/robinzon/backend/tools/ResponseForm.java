@@ -188,28 +188,40 @@ public class ResponseForm {
      * </p>
      *
      * @since 2024.03.13
+     * @since 2024.03.15
      * @author Anton Kuzmin
      */
     private void log() {
         if (this.className == null)
-            throw new IllegalArgumentException("[ResponseForm] className cannot be null");
+            throw new IllegalArgumentException(
+                    "[ResponseForm] className cannot be null");
         if (this.functionName == null)
-            throw new IllegalArgumentException("[ResponseForm][" + this.className + "] functionName cannot be null");
+            throw new IllegalArgumentException(
+                    String.format(
+                            "[ResponseForm][%s] functionName cannot be null",
+                            this.className));
+        if (this.status == null
+                && this.text != null)
+            throw new IllegalArgumentException(
+                    String.format(
+                            "[ResponseForm][%s] status cannot be null if the text is not null",
+                            this.className));
 
-        StringBuilder sb = new StringBuilder("[");
-        sb.append(this.className).append("][").append(this.functionName).append("]");
-        if (this.status == null) {
-            System.out.println(sb.toString());
-            return;
-        } else
-            sb.append("[").append(this.status).append("]");
-        if (this.text == null) {
-            System.out.println(sb.toString());
-            return;
-        } else
-            System.out.println(sb.append(" ").append(this.text));
-
-        return;
+        System.out.println(
+                String.format(
+                        "[%s][%s]%s%s",
+                        this.className,
+                        this.functionName,
+                        (this.status == null
+                                ? ""
+                                : String.format(
+                                        "[%s]",
+                                        this.status)),
+                        (this.text == null
+                                ? ""
+                                : String.format(
+                                        " %s",
+                                        this.text))));
     }
 
     @Override

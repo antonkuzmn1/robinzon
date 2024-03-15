@@ -180,7 +180,7 @@ public final class VpnServerEntityManager
 									: "")
 					.append(
 							netEntityRepository.findById(netEntity.getId()) == null
-									? "Net with ID " + netEntity.getId() + " not found"
+									? String.format("Net with ID %d not found", netEntity.getId())
 									: "")
 					.append(
 							vpnTypeEntity.size() == 0
@@ -355,7 +355,7 @@ public final class VpnServerEntityManager
 									: "")
 					.append(
 							netEntityRepository.findById(netEntity.getId()) == null
-									? "Net with ID " + netEntity.getId() + " not found"
+									? String.format("Net with ID %d not found", netEntity.getId())
 									: "")
 					.append(
 							vpnTypeEntity.size() == 0
@@ -370,7 +370,7 @@ public final class VpnServerEntityManager
 					 */
 					.append(
 							entity == null
-									? "VPN server with ID " + id + " not found"
+									? String.format("Entity with ID %d not found", id)
 									: "")
 
 					/**
@@ -387,7 +387,7 @@ public final class VpnServerEntityManager
 									&& entity.getPublicKey().equals(publicKey)
 									&& entity.getNetEntity().getId().equals(netEntity.getId())
 									&& entity.getVpnTypeEntity().equals(vpnTypeEntity)
-											? "All params of " + entity.getIp() + " is equal"
+											? String.format("All params of %s is equal", entity.getIp())
 											: "");
 
 			// Termination of the function if errors were detected.
@@ -511,7 +511,7 @@ public final class VpnServerEntityManager
 					 */
 					.append(
 							entity == null
-									? "VPN server with ID " + id + " not found"
+									? String.format("Entity with ID %d not found", id)
 									: "")
 
 					/**
@@ -523,7 +523,7 @@ public final class VpnServerEntityManager
 					 */
 					.append(
 							entity.isDeleted() == true
-									? "Entity with ID" + entity.getId() + " already deleted"
+									? String.format("Entity with ID %d already deleted", entity.getId())
 									: "");
 
 			// Termination of the function if errors were detected.
@@ -556,16 +556,9 @@ public final class VpnServerEntityManager
 
 			// Adding a new entry to the entity editing history.
 			historyRepository.save(
-					new VpnServerHistory(
-							entity,
-							entity.getTitle(),
-							entity.getDescription(),
-							entity.getIp(),
-							entity.getPublicKey(),
-							entity.getNetEntity(),
-							entity.getVpnTypeEntity(),
-							null, // spring security system required
-							true));
+				new VpnServerHistory(
+					entity,
+					null)); // spring security system required
 
 			// The function execution was successful!
 			return super.success(

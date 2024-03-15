@@ -203,7 +203,9 @@ public class VmEntityManager
                                     : "")
                     .append(
                             fmEntityRepository.findById(fmEntity.getId()) == null
-                                    ? "FM with ID " + fmEntity.getId() + " not found"
+                                    ? String.format(
+                                            "FM with ID %d not found",
+                                            entity.getId())
                                     : "")
 
                     /**
@@ -221,7 +223,9 @@ public class VmEntityManager
                                     && entity.getHdd() == hdd
                                     && entity.isRunning() == running
                                     && entity.getFmEntity().equals(fmEntity)
-                                            ? "All params of " + entity.getName() + " is equal"
+                                            ? String.format(
+                                                    "All params of %s is equal",
+                                                    entity.getName())
                                             : "");
 
             // Termination of the function if errors were detected.
@@ -263,25 +267,27 @@ public class VmEntityManager
                 entityRepository.save(entity);
 
                 // Adding a new entry to the entity editing history.
-                historyRepository.save(new VmHistory(
-                        entityNew,
-                        name,
-                        cpu,
-                        ram,
-                        ssd,
-                        hdd,
-                        running,
-                        "",
-                        "",
-                        fmEntity,
-                        null, // no need cuz it change by system
-                        false));
+                historyRepository.save(
+                        new VmHistory(
+                                entityNew,
+                                name,
+                                cpu,
+                                ram,
+                                ssd,
+                                hdd,
+                                running,
+                                "",
+                                "",
+                                fmEntity,
+                                null, // no need cuz it change by system
+                                false));
 
                 // Creating a rent history for entity.
-                rentRepository.save(new VmRent(
-                        entityNew,
-                        null,
-                        null)); // no need cuz it change by system
+                rentRepository.save(
+                        new VmRent(
+                                entityNew,
+                                null,
+                                null)); // no need cuz it change by system
 
                 // The function execution was successful!
                 return super.success(
@@ -299,19 +305,20 @@ public class VmEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new VmHistory(
-                    entity,
-                    name,
-                    cpu,
-                    ram,
-                    ssd,
-                    hdd,
-                    running,
-                    entity.getTitle(),
-                    entity.getDescription(),
-                    fmEntity,
-                    null, // no need cuz it change by system
-                    false));
+            historyRepository.save(
+                    new VmHistory(
+                            entity,
+                            name,
+                            cpu,
+                            ram,
+                            ssd,
+                            hdd,
+                            running,
+                            entity.getTitle(),
+                            entity.getDescription(),
+                            fmEntity,
+                            null, // no need cuz it change by system
+                            false));
 
             // The function execution was successful!
             return super.success(
@@ -422,7 +429,7 @@ public class VmEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "VM with ID " + id + " not found"
+                                    ? String.format("VM with ID %d not found", id)
                                     : "")
 
                     /**
@@ -435,7 +442,7 @@ public class VmEntityManager
                     .append(
                             entity.getTitle().equals(title)
                                     && entity.getDescription().equals(description)
-                                            ? "All params of " + entity.getName() + " is equal"
+                                            ? String.format("All params of %s is equal", entity.getName())
                                             : "");
 
             // Termination of the function if errors were detected.
@@ -468,19 +475,20 @@ public class VmEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new VmHistory(
-                    entity,
-                    id,
-                    entity.getCpu(),
-                    entity.getRam(),
-                    entity.getSsd(),
-                    entity.getHdd(),
-                    entity.isRunning(),
-                    title,
-                    description,
-                    entity.getFmEntity(),
-                    null, // spring security system required
-                    false));
+            historyRepository.save(
+                    new VmHistory(
+                            entity,
+                            id,
+                            entity.getCpu(),
+                            entity.getRam(),
+                            entity.getSsd(),
+                            entity.getHdd(),
+                            entity.isRunning(),
+                            title,
+                            description,
+                            entity.getFmEntity(),
+                            null, // spring security system required
+                            false));
 
             // The function execution was successful!
             return super.success(

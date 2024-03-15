@@ -63,6 +63,19 @@ public class VpnServerHistory {
     @Column(nullable = false)
     private boolean deleted;
 
+    /**
+     * <h3>New entity</h3>
+     *
+     * @param vpnServerEntity
+     * @param title
+     * @param description
+     * @param ip
+     * @param publicKey
+     * @param netEntity
+     * @param vpnTypeEntity
+     * @param changeBy
+     * @param deleted
+     */
     public VpnServerHistory(
             VpnServerEntity vpnServerEntity,
             String title,
@@ -82,6 +95,26 @@ public class VpnServerHistory {
         this.vpnTypeEntity = vpnTypeEntity;
         this.changeBy = changeBy;
         this.deleted = deleted;
+    }
+
+    /**
+     * <h3>Delete entity</h3>
+     *
+     * @param vpnServerEntity
+     * @param changeBy
+     */
+    public VpnServerHistory(
+            VpnServerEntity vpnServerEntity,
+            UserEntity changeBy) {
+        this.vpnServerEntity = vpnServerEntity;
+        this.changeBy = changeBy;
+        this.title = vpnServerEntity.getTitle();
+        this.description = vpnServerEntity.getDescription();
+        this.ip = vpnServerEntity.getIp();
+        this.publicKey = vpnServerEntity.getPublicKey();
+        this.netEntity = vpnServerEntity.getNetEntity();
+        this.vpnTypeEntity = vpnServerEntity.getVpnTypeEntity();
+        this.deleted = true;
     }
 
     public VpnServerEntity getVpnServerEntity() {

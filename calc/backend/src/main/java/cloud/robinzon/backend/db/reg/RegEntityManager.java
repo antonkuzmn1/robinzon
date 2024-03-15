@@ -241,19 +241,20 @@ public class RegEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new RegHistory(
-                    entity,
-                    brand,
-                    name,
-                    part,
-                    serial,
-                    buyDate,
-                    warrantyMonths,
-                    provider,
-                    title,
-                    description,
-                    null, // spring security system required
-                    false));
+            historyRepository.save(
+                    new RegHistory(
+                            entity,
+                            brand,
+                            name,
+                            part,
+                            serial,
+                            buyDate,
+                            warrantyMonths,
+                            provider,
+                            title,
+                            description,
+                            null, // spring security system required
+                            false));
 
             // The function execution was successful!
             return super.success(
@@ -414,7 +415,7 @@ public class RegEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "Entity with ID " + id + " not found"
+                                    ? String.format("Entity with ID %d not found", id)
                                     : "")
 
                     /**
@@ -434,7 +435,7 @@ public class RegEntityManager
                                     && entity.getProvider().equals(provider)
                                     && entity.getTitle().equals(title)
                                     && entity.getDescription().equals(description)
-                                            ? "All params of " + entity.getName() + " is equal"
+                                            ? String.format("All params of %s is equal", entity.getName())
                                             : "");
 
             // Termination of the function if errors were detected.
@@ -474,19 +475,20 @@ public class RegEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new RegHistory(
-                    entity,
-                    brand,
-                    name,
-                    part,
-                    serial,
-                    buyDate,
-                    warrantyMonths,
-                    provider,
-                    title,
-                    description,
-                    null, // spring security system required
-                    false));
+            historyRepository.save(
+                    new RegHistory(
+                            entity,
+                            brand,
+                            name,
+                            part,
+                            serial,
+                            buyDate,
+                            warrantyMonths,
+                            provider,
+                            title,
+                            description,
+                            null, // spring security system required
+                            false));
 
             // The function execution was successful!
             return super.success(
@@ -563,7 +565,7 @@ public class RegEntityManager
                      */
                     .append(
                             entity == null
-                                    ? "Entity with ID " + id + " not found"
+                                    ? String.format("Entity with ID %d not found", id)
                                     : "")
 
                     /**
@@ -575,7 +577,7 @@ public class RegEntityManager
                      */
                     .append(
                             entity.isDeleted() == true
-                                    ? "Entity with ID" + entity.getId() + " already deleted"
+                                    ? String.format("Entity with ID %d already deleted", entity.getId())
                                     : "");
 
             // Termination of the function if errors were detected.
@@ -607,19 +609,10 @@ public class RegEntityManager
             entityRepository.save(entity);
 
             // Adding a new entry to the entity editing history.
-            historyRepository.save(new RegHistory(
-                    entity,
-                    entity.getBrand(),
-                    entity.getName(),
-                    entity.getPart(),
-                    entity.getSerial(),
-                    entity.getBuyDate(),
-                    entity.getWarrantyMonths(),
-                    entity.getProvider(),
-                    entity.getTitle(),
-                    entity.getDescription(),
-                    null, // spring security system required
-                    true));
+            historyRepository.save(
+                    new RegHistory(
+                            entity,
+                            null)); // spring security system required
 
             // The function execution was successful!
             return super.success(

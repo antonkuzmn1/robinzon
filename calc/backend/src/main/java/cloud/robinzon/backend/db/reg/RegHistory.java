@@ -62,6 +62,22 @@ public class RegHistory {
     @Column(nullable = false)
     private boolean deleted;
 
+    /**
+     * <h3>New entity</h3>
+     *
+     * @param regEntity
+     * @param brand
+     * @param name
+     * @param part
+     * @param serial
+     * @param buyDate
+     * @param warrantyMonths
+     * @param provider
+     * @param title
+     * @param description
+     * @param changeBy
+     * @param deleted
+     */
     public RegHistory(
             RegEntity regEntity,
             String brand,
@@ -87,6 +103,29 @@ public class RegHistory {
         this.description = description;
         this.changeBy = changeBy;
         this.deleted = deleted;
+    }
+
+    /**
+     * <h3>Delete entity</h3>
+     *
+     * @param regEntity
+     * @param changeBy
+     */
+    public RegHistory(
+            RegEntity regEntity,
+            UserEntity changeBy) {
+        this.regEntity = regEntity;
+        this.changeBy = changeBy;
+        this.brand = regEntity.getBrand();
+        this.name = regEntity.getName();
+        this.part = regEntity.getPart();
+        this.serial = regEntity.getSerial();
+        this.buyDate = regEntity.getBuyDate();
+        this.warrantyMonths = regEntity.getWarrantyMonths();
+        this.provider = regEntity.getProvider();
+        this.title = regEntity.getTitle();
+        this.description = regEntity.getDescription();
+        this.deleted = true;
     }
 
     public RegEntity getRegEntity() {
